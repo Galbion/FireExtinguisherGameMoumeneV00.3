@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0059)https://galbion.github.io/FireExtinguisherGameMoumeneV00.3/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Méthode P.A.S.S. — Choisis et utilise le bon extincteur</title>
 <style>
@@ -44,7 +44,7 @@
 
   /* ---------- WATERMARK ---------- */
   .watermark{
-    position:absolute; top:-40%; right:-40%; width:180%; height:180%;
+    position:absolute; top:-40%; left:-40%; width:180%; height:180%;
     transform:rotate(-28deg); z-index:50; pointer-events:none;
     display:flex; flex-wrap:wrap; align-content:flex-start; overflow:hidden;
     opacity:.07;
@@ -218,7 +218,7 @@
 
   /* ---------- INSTRUCTIONS ---------- */
   .instructions{
-    position:absolute; left:3%; top:30%; z-index:45;
+    position:absolute; left:3%; top:20%; z-index:45;
     background:var(--cream); border-radius:12px; padding:12px 18px 12px 14px;
     display:flex; align-items:center; gap:12px; box-shadow:0 10px 24px rgba(0,0,0,.3);
     max-width:280px; transition:opacity .3s ease, transform .3s ease;
@@ -345,13 +345,13 @@
       <div class="pass-letter" id="letS2">S</div>
     </div>
     <div class="hud-right">
-      <div class="hud-stage" id="hudStage">Choisis l'extincteur</div>
-      <div class="hud-sub" id="hudSub">Quel type de feu est-ce ?</div>
+      <div class="hud-stage" id="hudStage">Étape 1 · Choix</div>
+      <div class="hud-sub" id="hudSub">Trouve l'extincteur adapté</div>
     </div>
     <div class="hud-controls">
       <button class="ctrl-btn" id="langBtn" title="Changer de langue">FR</button>
-      <button class="ctrl-btn" id="soundBtn" title="Couper le son">🔊</button>
-      <button class="ctrl-btn" id="helpBtn" title="Rappel des types d'extincteurs">?</button>
+      <button class="ctrl-btn" id="soundBtn" title="Activer le son">🔇</button>
+      <button class="ctrl-btn" id="helpBtn" title="Rappel des types d&#39;extincteurs">?</button>
     </div>
   </div>
 
@@ -359,12 +359,17 @@
 
 
   <div class="fire-scene" id="fireScene">
-  <div class="stage-sub" id="stageSub">Observe la matière qui brûle avant de choisir.</div>
+  <div class="stage-sub" id="stageSub">Bois et papier — Ce sont des matières solides ordinaires.</div>
     <div class="scene-floor"></div>
     <div class="base-hint" id="baseHint" style="display:none;"></div>
-    <div class="material" id="materialLayer"></div>
-    <div class="fire-wrap" id="fireWrap">
-      <div class="fire">
+    <div class="material" id="materialLayer">
+      <div class="m-wood">
+        <div class="log" style="width:150px; bottom:0; left:0; background:linear-gradient(180deg,#8B5E34,#6E4826);"></div>
+        <div class="log" style="width:130px; bottom:16px; left:10px; transform:rotate(-3deg); background:linear-gradient(180deg,#9C6B3E,#7C5230);"></div>
+        <div class="paper" style="bottom:30px; left:40px;"></div>
+      </div></div>
+    <div class="fire-wrap" id="fireWrap" style="opacity: 1;">
+      <div class="fire" style="transform: scale(1);">
         <div class="flame-layer flame-outer"></div>
         <div class="flame-layer flame-mid"></div>
         <div class="flame-layer flame-inner"></div>
@@ -379,8 +384,12 @@
     <div class="sweep-dot" id="dot3"></div>
   </div>
 
-  <div class="choices-wrap" id="choicesWrap">
-    <div class="choices-grid" id="choicesGrid"></div>
+  <div class="choices-wrap show" id="choicesWrap">
+    <div class="choices-grid" id="choicesGrid"><div class="ext-card"><div class="badge badge-circle" style="background:#2F6FB0;">4</div>
+        <div class="ext-name">Extincteur à CO2</div></div><div class="ext-card"><div class="badge badge-triangle" style="background:#3E8E5A;">1</div>
+        <div class="ext-name">Extincteur à eau</div></div><div class="ext-card"><div class="badge badge-square" style="background:#D6473C;">2</div>
+        <div class="ext-name">Extincteur à mousse</div></div><div class="ext-card"><div class="badge badge-star" style="background:#E0A72E;">3</div>
+        <div class="ext-name">Extincteur à poudre</div></div></div>
   </div>
 
   <div class="rig-wrap" id="rigWrap">
@@ -392,18 +401,18 @@
       <div class="ext-gauge"></div>
       <div class="ext-cap"></div>
       <div class="ext-body" id="extBody"><div class="ext-stripe"></div></div>
-      <div class="pin locked" id="pin">
-        <svg viewBox="0 0 34 34"><circle cx="17" cy="12" r="8" fill="none" stroke="#F4C13F" stroke-width="4"/><rect x="14" y="16" width="6" height="16" rx="3" fill="#F4C13F"/></svg>
+      <div class="pin locked" id="pin" style="transform: translate(-50%, 0px);">
+        <svg viewBox="0 0 34 34"><circle cx="17" cy="12" r="8" fill="none" stroke="#F4C13F" stroke-width="4"></circle><rect x="14" y="16" width="6" height="16" rx="3" fill="#F4C13F"></rect></svg>
       </div>
     </div>
-    <div class="reticle" id="reticle"></div>
+    <div class="reticle" id="reticle" style="display: none;"></div>
   </div>
 
   <div class="instructions" id="instructions">
     <div class="instr-icon" id="instrIcon">🧯</div>
     <div>
       <div class="instructions-title" id="instrTitle">INSTRUCTIONS</div>
-      <div class="instructions-text" id="instrText">Choisis l'extincteur adapté à ce feu.</div>
+      <div class="instructions-text" id="instrText">Clique sur l'extincteur adapté à ce type de feu.</div>
     </div>
   </div>
 
@@ -423,7 +432,15 @@
       <div class="card-icon">🧯</div>
       <h1 id="introTitleEl">Les types d'extincteurs</h1>
       <p id="introTextEl">Avant de commencer, un petit rappel : chaque extincteur est adapté à une catégorie de feu bien précise.</p>
-      <div class="legend-grid" id="legendGrid"></div>
+      <div class="legend-grid" id="legendGrid"><div class="legend-item"><div class="badge badge-triangle" style="background:#3E8E5A;">1</div>
+        <div class="legend-name">Extincteur à eau</div>
+        <div class="legend-use">Bois, papier, matières solides</div></div><div class="legend-item"><div class="badge badge-square" style="background:#D6473C;">2</div>
+        <div class="legend-name">Extincteur à mousse</div>
+        <div class="legend-use">Liquides inflammables, huiles</div></div><div class="legend-item"><div class="badge badge-star" style="background:#E0A72E;">3</div>
+        <div class="legend-name">Extincteur à poudre</div>
+        <div class="legend-use">Métaux, gaz, usages généraux</div></div><div class="legend-item"><div class="badge badge-circle" style="background:#2F6FB0;">4</div>
+        <div class="legend-name">Extincteur à CO2</div>
+        <div class="legend-use">Appareils électriques</div></div></div>
       <button class="btn" id="startBtn">Commencer le jeu</button>
     </div>
   </div>
@@ -637,10 +654,10 @@
   ];
 
   const EXTINGUISHERS = [
-    {id:'water', num:1, shape:'triangle', color:'#3E8E5A'},
+    {id:'water', num:1, shape:'square', color:'#3E8E5A'},
     {id:'foam', num:2, shape:'square', color:'#D6473C'},
-    {id:'powder', num:3, shape:'star', color:'#E0A72E'},
-    {id:'co2', num:4, shape:'circle', color:'#2F6FB0'},
+    {id:'powder', num:3, shape:'square', color:'#E0A72E'},
+    {id:'co2', num:4, shape:'square', color:'#2F6FB0'},
   ];
 
   function materialHTML(kind){
@@ -1279,5 +1296,6 @@
   openIntro(true);
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
